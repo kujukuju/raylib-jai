@@ -40,7 +40,7 @@ main :: ()
 
     for i: 0..MAX_COLUMNS - 1 {
         heights[i] = cast(float)GetRandomValue(1, 12);
-        positions[i] = make_Vector3( GetRandomValue(-15, 15), heights[i]/2, GetRandomValue(-15, 15) );
+        positions[i] = make_vector3( cast(float)GetRandomValue(-15, 15), heights[i]/2.0, cast(float)GetRandomValue(-15, 15) );
         colors[i] = make_Color( GetRandomValue(20, 255), GetRandomValue(10, 55), 30, 255 );
     }
 
