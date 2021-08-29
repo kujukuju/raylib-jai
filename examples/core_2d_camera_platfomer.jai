@@ -14,7 +14,6 @@
 ********************************************************************************************/
 
 #import "raylib";
-#import "raylib/raymath";
 #import "Basic";
 #import "Math";
 
@@ -227,13 +226,13 @@ UpdateCameraCenterSmoothFollow :: (camera: *Camera2D, player: *Player, envItems:
     fractionSpeed :: 0.8;
     
     camera.offset = make_vector2(width/2.0, height/2.0);
-    diff := Vector2Subtract(player.position, camera.target);
-    length := Vector2Length(diff);
+    diff := player.position - camera.target;
+    diffLength := length(diff);
     
-    if length > minEffectLength
+    if diffLength > minEffectLength
     {
-        speed := max(fractionSpeed*length, minSpeed);
-        camera.target = Vector2Add(camera.target, Vector2Scale(diff, speed*delta/length));
+        speed := max(fractionSpeed * diffLength, minSpeed);
+        camera.target = camera.target + diff * (speed * delta / diffLength);
     }
 }
 
